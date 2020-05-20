@@ -20,7 +20,7 @@ Log reports are generated into an HTML file with a generated table containing Ac
 
 ## System Requirements
 
-- DotBandit uses .NET Framework 3.5
+- DotBandit runs on the Microsoft .NET Framework 3.5
 
 ## Code
 
