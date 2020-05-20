@@ -1,0 +1,8 @@
+static void AddToStartup()
+    {
+        try
+        {
+            System.IO.File.Copy(Application.ExecutablePath, Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\" + System.AppDomain.CurrentDomain.FriendlyName);
+        }
+        catch { }
+    }

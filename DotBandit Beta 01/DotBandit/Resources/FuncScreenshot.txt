@@ -1,0 +1,23 @@
+private static Bitmap GetScreenShot()
+    {
+        Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+        Graphics graphics = Graphics.FromImage(bitmap as Image);
+        graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+
+        return bitmap;
+    }
+
+static void SaveScreenshot()
+    {
+        int t = 0;
+        while (t < time)
+        {            
+            Thread.Sleep(30000); /*{CUSTOM_EDIT_0X01}*/
+            try
+            {
+                string SavePNG = PNGPath + "\\" + DateTime.Now.ToString("MM.dd.yyyy HH.mm.ss") + ".png";
+                GetScreenShot().Save(SavePNG, ImageFormat.Png); /*{CUSTOM_EDIT_0X02}*/
+            }
+            catch (Exception ex) { }
+        }
+    }

