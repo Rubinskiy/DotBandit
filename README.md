@@ -41,9 +41,10 @@ Log reports are generated into an HTML file with a generated table containing Ac
 
 ![](https://raw.githubusercontent.com/DotBandit/dotbandit.github.io/master/Archive.png)
 
-## Credits
+## Acknowledgments
 
-- [Robin Hannan Janssen](https://github.com/robinhannanjanssen) - The DotBandit Project
+- DotBandit was created by [Robin H. Janssen](https://github.com/robinhannanjanssen)
+- DotBandit was created for [Harvard University's CS50](https://cs50.harvard.edu/) final project
 
 ## Disclaimer
 
