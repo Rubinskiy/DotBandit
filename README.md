@@ -43,7 +43,7 @@ Log reports are generated into an HTML file with a generated table containing Ac
 
 ## Acknowledgments
 
-- DotBandit was created by [Robin H. Janssen](https://github.com/robinhannanjanssen)
+- DotBandit was created by [Robin](https://github.com/robinhannanjanssen)
 - DotBandit was created for [Harvard University's CS50](https://cs50.harvard.edu/) final project
 
 ## Disclaimer
