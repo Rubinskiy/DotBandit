@@ -2,8 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/DotBandit/dotbandit.github.io/master/beta.png" width="100" height="100">
 
-DotBandit is an Open-source Administration Tool and Utility for Windows. It is able to build executable files by customizing a few options.
-Log reports are generated into an HTML file with a generated table containing Active windows opened and Keystrokes typed.
+DotBandit is an Open-source Administration and Utility Tool for the Windows Operating System. Able to monitor your activity with screenshots, keystrokes, active window-grabbing and more. One-click deploy and can be in operation indefinitely without monitoring. Also customizable through user-input options. Log reports are generated into an HTML file with detailed analysis of user activity.
 
 ## Features
 
