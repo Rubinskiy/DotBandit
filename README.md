@@ -42,7 +42,7 @@ DotBandit is an Open-source Administration and Utility Tool for the Windows Oper
 
 ## Acknowledgments
 
-- DotBandit was created by [Robin](https://github.com/robinhannanjanssen)
+- DotBandit was created by [Robin](https://github.com/rubinskiy)
 - DotBandit was created for [Harvard University's CS50](https://cs50.harvard.edu/) final project
 
 ## Disclaimer
