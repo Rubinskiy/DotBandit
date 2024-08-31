@@ -1,7 +1,8 @@
+## DotBandit
+
 <img src="https://raw.githubusercontent.com/DotBandit/dotbandit.github.io/master/beta.png" width="100" height="100">
 
-DotBandit is an Open-source Administration Tool and Utility for Windows. It is able to build executable files by customizing a few options.
-Log reports are generated into an HTML file with a generated table containing Active windows opened and Keystrokes typed.
+DotBandit is an Open-source Administration and Utility Tool for the Windows Operating System. Able to monitor your activity with screenshots, keystrokes, active window-grabbing and more. One-click deploy and can be in operation indefinitely without monitoring. Also customizable through user-input options. Log reports are generated into an HTML file with detailed analysis of user activity.
 
 ## Features
 
@@ -18,7 +19,7 @@ Log reports are generated into an HTML file with a generated table containing Ac
 
 ## System Requirements
 
-- DotBandit uses .NET Framework 3.5
+- DotBandit runs on the Microsoft .NET Framework 3.5
 
 ## Code
 
@@ -39,9 +40,10 @@ Log reports are generated into an HTML file with a generated table containing Ac
 
 ![](https://raw.githubusercontent.com/DotBandit/dotbandit.github.io/master/Archive.png)
 
-## Credits
+## Acknowledgments
 
-- [Robin](https://github.com/Rubinskiy) - The DotBandit Project
+- DotBandit was created by [Robin](https://github.com/rubinskiy)
+- DotBandit was created for [Harvard University's CS50](https://cs50.harvard.edu/) final project
 
 ## Disclaimer
 
