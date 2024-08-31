@@ -41,7 +41,7 @@ Log reports are generated into an HTML file with a generated table containing Ac
 
 ## Credits
 
-- [Robin Hannan Janssen](https://github.com/robinhannanjanssen) - The DotBandit Project
+- [Robin](https://github.com/Rubinskiy) - The DotBandit Project
 
 ## Disclaimer
 
